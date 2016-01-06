@@ -41,9 +41,12 @@ Route::get('/sayhello/{name}', function($name)
 });
 
 // Create a route that responds to a GET request on the path /rolldice.
-Route::get('/rolldice', function ()
+Route::get('/rolldice/{number}', function ($number)
 {
-    return View::make('roll-dice');
+	// Modify the route to take in a parameter named guess.
+	//Someone will access the route by visiting http://blog.dev/rolldice/1, where 1 is their guess.
+	$data = array('number' => $number);
+    return View::make('roll-dice')->with($data); //sending values to the view
 });
 
 
