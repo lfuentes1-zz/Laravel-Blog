@@ -43,9 +43,7 @@ Route::get('/sayhello/{name}', function($name)
 // Create a route that responds to a GET request on the path /rolldice.
 Route::get('/rolldice', function ()
 {
-	// Within the route, return a random number between 1 and 6.
-	$random = rand(1, 6);
-    return "Your random number: " . $random;
+    return View::make('roll-dice');
 });
 
 
