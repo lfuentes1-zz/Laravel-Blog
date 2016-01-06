@@ -13,5 +13,10 @@
 <body>
     <h1>The random number is: <?= $random; ?></h1>
     <h1>Your guessed number is: <?= $number; ?></h1>
+    <?php if ($random == $number) : ?>
+    	<h1>Successful Guess!</h1>
+    <?php else : ?>
+    	<h1>Bad Guess!</h1>
+    <?php endif; ?>
 </body>
 </html>
