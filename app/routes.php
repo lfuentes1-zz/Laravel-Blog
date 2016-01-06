@@ -15,3 +15,38 @@ Route::get('/', function()
 {
 	return View::make('hello');
 });
+
+Route::get('/portfolio', function ()
+{
+	return "Welcome to Letty's Portfolio!";
+});
+
+Route::get('/resume', function ()
+{
+    return "Welcome to Letty's Resume!";
+});
+
+// Route::get('/sayhello/{name?}', function($name = '')
+// {
+// 	if ($name == '') {
+// 	  	return "Hi, there!";
+// 	}
+//    return "Hello, $name!";
+// });
+
+Route::get('/sayhello/{name}', function($name)
+{
+    $data = array('name' => $name);
+    return View::make('my-first-view')->with($data); //sending values to the view
+});
+
+// Create a route that responds to a GET request on the path /rolldice.
+Route::get('/rolldice', function ()
+{
+	// Within the route, return a random number between 1 and 6.
+	$random = rand(1, 6);
+    return "Your random number: " . $random;
+});
+
+
+
