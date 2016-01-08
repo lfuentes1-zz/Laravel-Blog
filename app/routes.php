@@ -30,7 +30,7 @@ Route::get('/firstview/{name}', 'HomeController@showWelcome');
 // Create a route that responds to a GET request on the path /rolldice.
 Route::get('/rolldice/{number}', 'HomeController@rollDice');
 
-Route::resource('/posts', 'PostsController');
+Route::resource('/posts', 'PostsController'); //RESTful API (CRUD)
 
 
 

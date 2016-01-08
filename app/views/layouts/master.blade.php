@@ -14,6 +14,7 @@
 	@yield('resume-content') 
 	@yield('portfolio-content')
 	@yield('roll-dice-content')
+	@yield('create-content')
 
 	<div class="container-fluid">
         <header class="row">
@@ -30,7 +31,7 @@
     </div>
 
 
-	
+
 	{{-- First, <script type="/js/jquery.min.js"></script> --}}
 	{{-- Second, <script type="/js/bootstrap.min.js"></script> --}}
 	{{-- Third, my custom javascript --}}
