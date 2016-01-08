@@ -10,6 +10,7 @@ This is my blog written in PH, JS, jQuery, and CSS on the Laravel framework usin
 	- cd blog.dev
 	- git branch letty
 	- git checkout letty
+	- git branch -b letty (short cut command to replace the above)
 - Create .dev site
 	- cd vagrant_lamp
 	- ansible-playbook ansible/playbooks/vagrant/site/php.yml

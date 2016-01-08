@@ -43,7 +43,7 @@
 		@endif
 
 		@foreach ($cohorts as $className)
-			<h3>{{{ $classNAme }}}</h3>
+			<h3>{{{ $className }}}</h3>
 		@endforeach
 
 	</div>
