@@ -15,6 +15,8 @@
 	@yield('portfolio-content')
 	@yield('roll-dice-content')
 	@yield('create-content')
+	@yield('showOne-content')
+	@yield('showAll-content')
 
 	<div class="container-fluid">
         <header class="row">

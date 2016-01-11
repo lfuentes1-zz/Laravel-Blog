@@ -9,7 +9,8 @@ class PostsController extends \BaseController {
 	 */
 	public function index()
 	{
-		return ('Show a list of all posts!');
+		//Show a list of all posts
+		return Post::all();
 	}
 
 
@@ -33,7 +34,17 @@ class PostsController extends \BaseController {
 	public function store()
 	{
 		// Store the new post
-		return Redirect::back()->withInput();
+		$post = new Post();
+		$post->title = Input::get('post-title');
+		$post->body = Input::get('post-body');
+		$post->category_id = 1;
+		$post->user_id = 1;
+
+		if ($post->save()) {  //true returns true or false
+			return Redirect::route('posts.index');
+		} else {
+			return Redirect::back()->withInput();
+		}
 	}
 
 
@@ -45,7 +56,15 @@ class PostsController extends \BaseController {
 	 */
 	public function show($id)
 	{
-		return 'Show a specific post';
+		//Show a specific post
+		try {
+			$post = Post::findOrFail($id);
+			return View::make('posts.show')->with('post', $post);
+		} catch (Exception $e)
+		{
+			return "not found";
+			// I can also redirect back somewhere - index or something else
+		}
 	}
 
 
@@ -57,6 +76,7 @@ class PostsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
+		//need ID to send along with all the information
 		return ('Show a form for editing a specific post');
 	}
 

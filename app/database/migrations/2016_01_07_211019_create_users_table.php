@@ -20,9 +20,9 @@ class CreateUsersTable extends Migration {
 			$table->string('username', 100)->unique();
 			$table->string('email', 100)->unique();
 			$table->string('password', 255);
-			$table->date('birthday')->nullable();
-			$table->string('phone_number', 50)->nullable();
-			$table->integer('zip_code');
+			// $table->date('birthday')->nullable();
+			// $table->string('phone_number', 50)->nullable();
+			// $table->integer('zip_code');
 			$table->timestamps();
 		});
 	}
@@ -34,6 +34,11 @@ class CreateUsersTable extends Migration {
 	 */
 	public function down()
 	{
+		// if I am running refresh I will get a constraint error, unless I delete foreigh key first
+		// Schema::table('posts', function($table) {
+		// 	$table->dropForeign('posts_user_id_foreign');
+		// });
+
 		Schema::drop('users');
 	}
 
