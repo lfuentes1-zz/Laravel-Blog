@@ -1,6 +1,6 @@
 <?php 
 
-class Post extends Eloquent {
+class Post extends BaseModel {
 
 	protected $table = 'posts';
 
@@ -9,6 +9,11 @@ class Post extends Eloquent {
 		'post-body' => 'required|max:10000'
 
 		);
+
+	public function user()
+	{
+		return $this->belongsTo('User');
+	}
 
 	//allows for mass filling and thus the usage of create instead of new for objects
 	// protected $fillable = array('title', 'body');

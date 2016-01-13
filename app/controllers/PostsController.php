@@ -34,6 +34,7 @@ class PostsController extends \BaseController {
 	public function store()
 	{
 		$post = new Post();
+
 		return $this->validateAndSave($post);
 	}
 
@@ -52,9 +53,11 @@ class PostsController extends \BaseController {
 			return View::make('posts.show')->with('post', $post);
 		} catch (Exception $e)
 		{
-			return "Not Found";
-			// return Redirect::action('PostsController@index');
-			// I can also redirect back somewhere - index or something else
+			Log::error('Failed to find a specific record', array(404, "title: " . $title));
+			App::abort(404);  //this goes directly to the missing method in global.php
+			//Previous option:  Improved with above line
+			// Session::flash('errorMessage', "The post you are trying to access does not exist!");
+			//return Redirect::action('PostsController@index');
 		}
 	}
 
@@ -67,8 +70,11 @@ class PostsController extends \BaseController {
 			return View::make('posts.show')->with('post', $post);
 		} catch (Exception $e)
 		{
-			return "Record not found";
-			// I can also redirect back somewhere - index or something else
+			Log::error('Failed to find a specific record', array(404, "title: " . $title));
+			App::abort(404);  //this goes directly to the missing method in global.php
+			//Previous option:  Improved with line above
+			// Session::flash('errorMessage', "The post you are trying to access does not exist!");
+			// return Redirect::action('PostsController@index');
 		}
 	}	
 
@@ -81,8 +87,8 @@ class PostsController extends \BaseController {
 	 */
 	public function edit($id)
 	{
-		//need ID to send along with all the information
-		return ('Show a form for editing a specific post');
+		//Show a form for editing a specific post
+		return View::make('posts.edit')->with($id);  //need ID to send along with all the information
 	}
 
 	/**
@@ -95,7 +101,6 @@ class PostsController extends \BaseController {
 	{
 		//create the validator 
 		$validator = Validator::make(Input::all(), Post::$rules);
-
 
 		if ($validator->fails()) {
         	// validation failed, redirect to the post create page with validation errors and old inputs
@@ -110,6 +115,8 @@ class PostsController extends \BaseController {
 			// $post->user_id = User::all()->random();
     
 			if ($post->save()) {  //true returns true or false
+				Log::info('Post successfully saved', array("post: " . $post));
+				Session::flash('successMessage', 'Post successfully saved!');
 				return Redirect::route('posts.index');
 			} else {
 				return Redirect::back()->withInput();
@@ -142,11 +149,19 @@ class PostsController extends \BaseController {
 	public function destroy($id)
 	{
 		//Delete a specific post
-		$post = Post::find($id);
-		$post->delete();
 		
+			$post = Post::find($id);
+			$result = $post->delete();
+			
+			if ($result) //successful deletion
+			{
+				Log::info('Post successfully deleted.', array("post: " . $post));
+				Session::flash('successMessage', 'Post successfully deleted!');
+			} else {
+				Log::info('Error in deleting post.', array("post: " . $post));
+				Session::flash('errorMessage', 'Error in deleting post!');
+			}
+	
 		return Redirect::route('posts.index');
 	}
-
-
 }
