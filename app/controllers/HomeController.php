@@ -15,30 +15,25 @@ class HomeController extends BaseController {
 	|
 	*/
 
-	public function sayHello ()
+	public function showWelcome ()
 	{
-	    $data = array (
-	        'name' => 'Codeup',
-	        'cohorts' => array (
-	            'Apollo',
-	            'Hampton'
-	            )
-	        );
-		return View::make('hello', $data);
+		return Redirect::action('PostsController@index');
+
+		// return View::make('welcome');  //this shows the welcome page
 	}
 
-	public function rollDice($number)
-	{
-		// Modify the route to take in a parameter named guess.
-		//Someone will access the route by visiting http://blog.dev/rolldice/1, where 1 is their guess.
-	    // Add a view named roll-dice.php. Instead of just returning the random number, show the view and have it display the random number.
-	    // Modify the route and view so that you can display the guess in addition to the roll and also tell if the guess matches the roll.
-	    $random = rand(1, 6);
-		$data = array('number' => $number, 'random' => $random);
-	    return View::make('roll-dice')->with($data); //sending values to the view
-	    // return View::make('roll-dice', $data); //another option
-	    // return View::make('roll-dice')->with('number', $number); //another option
-	}
+	// public function rollDice($number)
+	// {
+	// 	// Modify the route to take in a parameter named guess.
+	// 	//Someone will access the route by visiting http://blog.dev/rolldice/1, where 1 is their guess.
+	//     // Add a view named roll-dice.php. Instead of just returning the random number, show the view and have it display the random number.
+	//     // Modify the route and view so that you can display the guess in addition to the roll and also tell if the guess matches the roll.
+	//     $random = rand(1, 6);
+	// 	$data = array('number' => $number, 'random' => $random);
+	//     return View::make('roll-dice')->with($data); //sending values to the view
+	//     // return View::make('roll-dice', $data); //another option
+	//     // return View::make('roll-dice')->with('number', $number); //another option
+	// }
 
 	public function showResume()
 	{
@@ -50,10 +45,10 @@ class HomeController extends BaseController {
 		return View::make('portfolio');
 	}
 
-	public function showWelcome($name)
-	{
-		$data = array('name' => $name);
-    	return View::make('my-first-view')->with($data); //sending values to the view
-	}
+	// public function showWelcome($name)
+	// {
+	// 	$data = array('name' => $name);
+ //    	return View::make('my-first-view')->with($data); //sending values to the view
+	// }
 
 }

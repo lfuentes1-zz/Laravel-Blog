@@ -1,4 +1,57 @@
 /** {
   outline: 1px solid red !important;
+}*/
+
+.navigation-bar {
+	z-index: 1;
 }
-*/
+
+.pagination-links {
+	text-align: center;
+}
+
+.page-content {
+	/*z-index: -1;*/
+	/*width: 100%;*/
+}
+
+body {
+	position: relative;
+}
+
+.resume-nav-bar {
+	position: absolute;
+	position: fixed;
+}
+
+.right-side {
+	position: absolute;
+}
+
+.left-side {
+	position: absolute;
+	position: fixed;
+	border: solid black 1px;
+}
+
+/*main needs an offset*/
+main {
+	position: relative;
+	margin-top: 50px;
+}
+
+header {
+	position: absolute;
+	position: fixed;
+}
+
+.profile-pic {
+	width: 215px;
+	height: 250px;
+}
+
+.resume-contains-all {
+	position: absolute;
+	margin-top: 50px;
+	border: solid black 1px;
+}

@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'HomeController@sayHello');
+Route::get('/', 'HomeController@showWelcome');
 
 Route::get('/portfolio', 'HomeController@showPortfolio');  
 
@@ -25,10 +25,12 @@ Route::get('/resume', 'HomeController@showResume');
 //    return "Hello, $name!";
 // });
 
-Route::get('/firstview/{name}', 'HomeController@showWelcome');
+// Route::get('/firstview/{name}', 'HomeController@showWelcome');
 
 // Create a route that responds to a GET request on the path /rolldice.
-Route::get('/rolldice/{number}', 'HomeController@rollDice');
+// Route::get('/rolldice/{number}', 'HomeController@rollDice');
+
+Route::get('/posts/title/{title}', 'PostsController@findByTitle');
 
 Route::resource('/posts', 'PostsController'); //RESTful API (CRUD)
 
