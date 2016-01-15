@@ -2,6 +2,15 @@
 
 class PostsController extends \BaseController {
 
+	public function __construct()
+	{
+		parent::__construct(); //ensures that the parent constructor is not destroyed
+
+		// $this->beforeFilter('auth'); this auth filter will protect every action in this controller, add filters
+		// $this->beforeFilter('auth', array('only' => array('create', 'store'))); //adding filters, option one
+		$this->beforeFilter('auth', array('except' => array('index', 'show'))); //adding filters, option two
+	}
+
 	/**
 	 * Display a listing of the resource.
 	 *
@@ -10,7 +19,11 @@ class PostsController extends \BaseController {
 	public function index()
 	{
 		//Show a list of all posts
-		return View::make('posts.index')->with('posts', Post::paginate(5));
+		// $perPage = Input::get('...'); user selects how many items to show per page and $perPage goes into paginate($perPage)
+		// return View::make('posts.index')->with('posts', Post::paginate(5));
+		// return View::make('posts.index')->Post::with('user')->orderBy('create_at', 'desc')->get();
+		$posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(5);
+		return View::make('posts.index')->with('posts', $posts);
 	}
 
 
@@ -88,7 +101,8 @@ class PostsController extends \BaseController {
 	public function edit($id)
 	{
 		//Show a form for editing a specific post
-		return View::make('posts.edit')->with($id);  //need ID to send along with all the information
+		$post = Post::find($id);
+		return View::make('posts.edit')->with('post', $post);
 	}
 
 	/**

@@ -12,8 +12,8 @@
 		<p>{{{ $post->body }}}</p>
 		<p>{{{ "categories:  " . $post->category_id }}}</p>
 		{{-- <p><span class="glyphicon glyphicon-time">{{{ "created: " . $post->created_at->diffForHumans() }}}</span></p> --}}
-		<p><span class="glyphicon glyphicon-time">{{{ "created: " . $post->updated_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}}
-		<p><span class="glyphicon glyphicon-time">{{{ "last updated: " . $post->updated_at->setTimezone('America/Chicago')->format('l, F jS Y @ h:i:s A') }}}
+		<p><span class="glyphicon glyphicon-time">{{{ "created: " . $post->updated_at->format('l, F jS Y @ h:i:s A') }}}
+		<p><span class="glyphicon glyphicon-time">{{{ "last updated: " . $post->updated_at->format('l, F jS Y @ h:i:s A') }}}
 	@endforeach
 
 	<div class="pagination-links">{{ $posts->links() }}</div>

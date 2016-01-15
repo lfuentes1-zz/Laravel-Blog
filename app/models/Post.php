@@ -15,6 +15,10 @@ class Post extends BaseModel {
 		return $this->belongsTo('User');
 	}
 
+	public function categories()
+	{
+		return $this->belongsToMany('Category');
+	}
 	//allows for mass filling and thus the usage of create instead of new for objects
 	// protected $fillable = array('title', 'body');
 }

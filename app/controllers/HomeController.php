@@ -51,4 +51,28 @@ class HomeController extends BaseController {
  //    	return View::make('my-first-view')->with($data); //sending values to the view
 	// }
 
+	public function getLogin()
+	{
+		return View::make('login');
+	}
+	public function getLogout()
+	{
+		Auth::logout();
+		return Redirect::action('HomeController@showWelcome'); //can also be success page, yay you logged out
+	}
+	public function postLogin()
+	{
+		$username = Input::get('username');
+		$password = Input::get('password');
+
+		if (Auth::attempt(array('username' => $username, 'password' => $password))) {
+			Session::flash('successMessage', 'Successfully logged in!');
+ 		   return Redirect::intended('/posts');
+		} else {
+    		// login failed, go back to the login screen
+    		Session::flash('errorMessage', 'Login Failed!!');
+    		return Redirect::back();
+		}
+	}
+
 }

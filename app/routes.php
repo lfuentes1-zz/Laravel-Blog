@@ -34,5 +34,10 @@ Route::get('/posts/title/{title}', 'PostsController@findByTitle');
 
 Route::resource('/posts', 'PostsController'); //RESTful API (CRUD)
 
+Route::get('login', 'HomeController@getLogin'); //show the form
 
+Route::post('login', 'HomeController@postLogin'); //get the contents of the form
 
+Route::get('logout', 'HomeController@getLogout'); //redirects
+
+Route::resource('tags', 'TagsController');

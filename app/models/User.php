@@ -33,6 +33,6 @@ class User extends BaseModel implements UserInterface, RemindableInterface {
 
 	public function posts()
 	{
-		return $this->hasMany('Post'); //Post string is the model
+		return $this->hasMany('Post'); //Post string is the model name not the table
 	}
 }
