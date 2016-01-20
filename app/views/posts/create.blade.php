@@ -29,7 +29,7 @@
     <div class="form-group">
       <label for="post-category">Category</label>
 
-        <select class="form-control">
+        <select class="form-control" multiple>
           <option value="php-laravel">PHP/Laravel</option>
           <option value="js-jquery">JavaScript/jQuery</option>
           <option value="apis">APIs</option>

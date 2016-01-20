@@ -4,11 +4,13 @@
 
 @section('content')
 
-	{{ Form::open(array('action' => array('PostsController@destroy', $post->id), 'method' => 'DELETE')) }}
-		<button class="btn btn-default pull-right">Delete</button>
-	{{ Form::close() }}
+	@if (Auth::user())
+		{{ Form::open(array('action' => array('PostsController@destroy', $post->id), 'method' => 'DELETE')) }}
+			<button class="btn btn-default pull-right">Delete</button>
+		{{ Form::close() }}
 
-	<a class="btn btn-default pull-right" href="{{{ action('PostsController@edit', $post->id) }}}" role="button">Edit Post</a>
+		<a class="btn btn-default pull-right" href="{{{ action('PostsController@edit', $post->id) }}}" role="button">Edit Post</a>
+	@endif
 
 	<a class="btn btn-default pull-right" href="{{{ action('PostsController@index') }}}" role="button">Back</a>
 

@@ -12,9 +12,29 @@
 <body>
 	
 	<div class="container-fluid">
-		<header class="row navigation-bar">
-            @include('partials.nav-bar')
+		<header class="row">
+			@if (Auth::user())
+				<a class="btn btn-default pull-right" href="{{{ action('HomeController@getLogout') }}}"
+			 		role="button">Logout</a>
+			@endif
+			@if (!Auth::user())		
+				<a class="btn btn-default pull-right" href="{{{ action('HomeController@getLogin') }}}"
+			 		role="button">Login</a>
+			@endif
         </header>
+		<div class="form-group">
+			{{ Form::open(array('method'=>'GET')) }}
+	  			{{ $errors->first('search', '<span class="help-block">:message</span>') }}
+	  			{{ Form::label('search', 'Search') }}
+	  			{{ Form::text('search', null, array('placeholder' => 'search for a post', 'class' => 'form-control')) }}
+	  			<button class="btn btn-default pull-right" role="button">Search</button>
+			{{ Form::close() }}
+   		</div> 
+
+		<nav class="row navigation-bar">
+            @include('partials.nav-bar')
+        </nav>
+ 
         <main class="row page-content center-block">
 	        {{-- yield is a placeholder --}}
 

@@ -4,7 +4,9 @@
 
 @section('content')
 
-	<a class="btn btn-default pull-right" href="{{{ action('PostsController@create') }}}" role="button">New Post</a>
+	@if (Auth::user())
+		<a class="btn btn-default pull-right" href="{{{ action('PostsController@create') }}}" role="button">New Post</a>
+	@endif
 
 	@foreach ($posts as $post)
 		<h1><a href="{{{ action('PostsController@findByTitle', $post->title) }}}">{{{ $post->title }}}</a></h1>

@@ -4,6 +4,7 @@
 
 .navigation-bar {
 	z-index: 1;
+	margin-top: 50px;
 }
 
 .pagination-links {

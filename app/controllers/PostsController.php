@@ -8,7 +8,7 @@ class PostsController extends \BaseController {
 
 		// $this->beforeFilter('auth'); this auth filter will protect every action in this controller, add filters
 		// $this->beforeFilter('auth', array('only' => array('create', 'store'))); //adding filters, option one
-		$this->beforeFilter('auth', array('except' => array('index', 'show'))); //adding filters, option two
+		$this->beforeFilter('auth', array('except' => array('index', 'show', 'findByTitle'))); //adding filters, option two
 	}
 
 	/**
@@ -16,13 +16,20 @@ class PostsController extends \BaseController {
 	 *
 	 * @return Response
 	 */
-	public function index()
+	public function index()//parameters are located in the URL not from the forms
 	{
+		$posts = Post::with('user')->orderBy('created_at', 'desc');
+		$search = Input::get('search');
+		//dd($search);
+		if ($search)
+		{
+			$posts->where('title', 'like', "%$search%");
+		}
 		//Show a list of all posts
 		// $perPage = Input::get('...'); user selects how many items to show per page and $perPage goes into paginate($perPage)
 		// return View::make('posts.index')->with('posts', Post::paginate(5));
 		// return View::make('posts.index')->Post::with('user')->orderBy('create_at', 'desc')->get();
-		$posts = Post::with('user')->orderBy('created_at', 'desc')->paginate(5);
+		$posts = $posts->paginate(5);
 		return View::make('posts.index')->with('posts', $posts);
 	}
 
